@@ -1,0 +1,26 @@
+{
+  "homepage": "https://rufenmatt.github.io/ml-arxiv-papers/",
+  "name": "ml-arxiv-papers",
+  "version": "0.0.1",
+  "description": "Read the latest arXiv ML when your bored. Go through the lastest publications and learn new stuff.",
+  "main": "generate.js",
+  "scripts": {
+    "build": "browserify src/build/generate.js -o bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rufenmatt/ml-arxiv-papers.git"
+  },
+  "author": "Mattia Rüfenacht <mattia.ruefenacht@trea.ch> (https://rufenmatt.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rufenmatt/ml-arxiv-papers.git"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "gh-pages": "^3.1.0"
+  },
+  "dependencies": {
+    "arxiv-api": "^1.1.1"
+  }
+}
