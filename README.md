@@ -2,6 +2,10 @@
 
 Simple app to explore the latest machine learning papers published on [arXiv](https://arxiv.org/).
 
+## ToDo
+
+- [ ] Implement Fetch for https call instead of http
+
 See live [demo](https://rufenmatt.github.io/ml-arxiv-papers/).
 
 ## About arXiv
