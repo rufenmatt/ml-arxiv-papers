@@ -29,6 +29,8 @@ main {
 
 h1 {
   
+  width: 100%;
+  text-align: center;
   font-weight: bold;
     font-size: 55px;
     font-family: 'Inter', sans-serif;
@@ -54,7 +56,7 @@ span {
   margin-bottom: 2rem;
   padding: 1rem;
   outline: none;
-  width: 200px;
+  width: 150px;
   display: inline-block;
   margin-right: 25px;
 }
@@ -74,7 +76,7 @@ span {
   background: transparent;
   padding: 1rem;
   outline: none;
-  width: 200px;
+  width: 150px;
   display: inline-block;
 }
 
