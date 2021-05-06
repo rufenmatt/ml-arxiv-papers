@@ -17196,7 +17196,7 @@
     const parseStringPromisified = util.promisify(parseString);
 
     const get_arxiv_url = ({ searchQuery, sortBy, sortOrder, start, maxResults }) =>
-      `https://cors-anywhere.herokuapp.com/http://export.arxiv.org/api/query?search_query=${searchQuery}&start=${start}&max_results=${maxResults}${sortBy ? `&sortBy=${sortBy}` : ''
+      `https://secret-ocean-49799.herokuapp.com/http://export.arxiv.org/api/query?search_query=${searchQuery}&start=${start}&max_results=${maxResults}${sortBy ? `&sortBy=${sortBy}` : ''
       }${sortOrder ? `&sortOrder=${sortOrder}` : ''}`;
 
     /**
