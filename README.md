@@ -4,7 +4,7 @@ Simple app to explore the latest machine learning papers published on [arXiv](ht
 
 ## ToDo
 
-- [ ] Implement Fetch for https call instead of http
+- [x] Implement a proxy server for cors issue
 
 See live [demo](https://rufenmatt.github.io/ml-arxiv-papers/).
 
