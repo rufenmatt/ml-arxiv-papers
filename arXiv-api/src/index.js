@@ -1,13 +1,12 @@
 const axios = require('axios');
 const _ = require('lodash');
-const {PREFIXES, SEPARATORS, SORT_BY, SORT_ORDER} = require('./constants');
+const { PREFIXES, SEPARATORS, SORT_BY, SORT_ORDER } = require('./constants');
 const util = require('util');
-const {parseString} = require('xml2js');
+const { parseString } = require('xml2js');
 const parseStringPromisified = util.promisify(parseString);
 
-const get_arxiv_url = ({searchQuery, sortBy, sortOrder, start, maxResults}) =>
-	`https://export.arxiv.org/api/query?search_query=${searchQuery}&start=${start}&max_results=${maxResults}${
-		sortBy ? `&sortBy=${sortBy}` : ''
+const get_arxiv_url = ({ searchQuery, sortBy, sortOrder, start, maxResults }) =>
+	`https://cors-anywhere.herokuapp.com/https://export.arxiv.org/api/query?search_query=${searchQuery}&start=${start}&max_results=${maxResults}${sortBy ? `&sortBy=${sortBy}` : ''
 	}${sortOrder ? `&sortOrder=${sortOrder}` : ''}`;
 
 /**
@@ -35,7 +34,7 @@ function parseArxivObject(entry) {
  * @param {string} prefix - one of PREFIXES - default to ALL.
  * @returns {string} query string of a tag.
  */
-function parseTag({name, prefix = PREFIXES.ALL}) {
+function parseTag({ name, prefix = PREFIXES.ALL }) {
 	if (!_.isString(name) || _.isEmpty(name)) {
 		throw new Error('you must specify tag name');
 	}
@@ -50,7 +49,7 @@ function parseTag({name, prefix = PREFIXES.ALL}) {
  * @param {Array.<{include: Array, exclude: Array}>} tags
  * @returns {string} query string between tags.
  */
-function parseTags({include, exclude = []}) {
+function parseTags({ include, exclude = [] }) {
 	if (!Array.isArray(include) || !Array.isArray(exclude)) {
 		throw new Error('include and exclude must be arrays');
 	}
@@ -73,7 +72,7 @@ function parseTags({include, exclude = []}) {
  * @param {number} maxResults - the number of results returned by the query.
  * @returns {Promise}
  */
-async function search({searchQueryParams, sortBy, sortOrder, start = 0, maxResults = 10}) {
+async function search({ searchQueryParams, sortBy, sortOrder, start = 0, maxResults = 10 }) {
 	if (!Array.isArray(searchQueryParams)) {
 		throw new Error('query param must be an array');
 	}
@@ -84,7 +83,7 @@ async function search({searchQueryParams, sortBy, sortOrder, start = 0, maxResul
 		throw new Error(`unsupported sort order option. should be one of: ${Object.values(SORT_ORDER).join(' ')}`);
 	}
 	const searchQuery = searchQueryParams.map(parseTags).join(SEPARATORS.OR);
-	const response = await axios.get(get_arxiv_url({searchQuery, sortBy, sortOrder, start, maxResults}));
+	const response = await axios.get(get_arxiv_url({ searchQuery, sortBy, sortOrder, start, maxResults }));
 	const parsedData = await parseStringPromisified(response.data);
 	return _.get(parsedData, 'feed.entry', []).map(parseArxivObject);
 }
