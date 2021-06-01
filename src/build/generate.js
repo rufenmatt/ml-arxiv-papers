@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
   const arxiv = require('arxiv-api');
 
@@ -6,7 +6,7 @@
     .search({
       searchQueryParams: [
         {
-          include: [{name: 'Machine Learning'}],
+          include: [{ name: 'Machine Learning' }],
         },
       ],
       start: 0,
@@ -20,20 +20,20 @@
 
       var i = -1;
 
-      btn.addEventListener("click", function() {
+      btn.addEventListener("click", function () {
         if (i < paper.length) {
           i += 1;
           document.getElementById("title").textContent = paper[i].title;
           btnRead.setAttribute("href", paper[i].id)
           document.querySelector(".author").textContent = paper[i].authors;
         } else {
-            document.getElementById("title").innerHTML = "you went through all for today.";
-            btnRead.removeAttribute("href")
-            document.querySelector(".author").textContent = "";
+          document.getElementById("title").innerHTML = "you went through all for today.";
+          btnRead.removeAttribute("href")
+          document.querySelector(".author").textContent = "";
         }
 
       });
     })
     .catch((error) => console.log(error));
 
-  })();
+})();
